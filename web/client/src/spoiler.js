@@ -8,18 +8,21 @@
   
   var lastData = undefined;
 
-  document.addEventListener('spoil:it', function(data){
+  document.addEventListener('spoil:it', function(evtData){
     spoiledRoot.classList.add('show');
-    console.log('spoiler data', data);
-    lastData = data;
+    
+    console.log('spoiler data', evtData);
+    var data = evtData.detail;
+    lastData = data.spoiler;
 
-    fetch(`http://spoilitfor.me:5000/media/${data.id}/spoiler`)
+    fetch(`http://spoilitfor.me:5000/media/${data.spoiler.id}/spoiler`)
       .then(function(res){
         return res.json();
       })
       .then(function(data){
         spoiler.classList.add('show');
         spoilerNode.innerHTML = data.message;
+        spoiler.style['background-image'] = `url(${data.background_image})`;
         console.log('spoiler', data);
       });
   
@@ -40,7 +43,7 @@
     setTimeout(function(){
 
       var spoilEvt = new CustomEvent('spoil:it', {
-        spoiler: lastData
+        detail: { spoiler: lastData }
       });
       document.dispatchEvent(spoilEvt);
     }, 300)

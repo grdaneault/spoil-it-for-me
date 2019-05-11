@@ -24,15 +24,7 @@
     });
 
   function load(data){
-    // var spoilers = [
-    //   'Game of Thrones',
-    //   'Harry Potter',
-    //   'Avengers',
-    //   'Mr. Robot'
-    // ]
-    var spoilers = data.map(function(spoiler){
-      return spoiler.title
-    });
+    
     root.innerHTML = '';
     data.forEach(function(spoiler){
 
@@ -42,7 +34,7 @@
       node.addEventListener('click', function(evt){
         console.log('clicky', spoiler);
         var spoilEvt = new CustomEvent('spoil:it', {
-          spoiler: spoiler
+          detail: {spoiler: spoiler}
         });
         document.dispatchEvent(spoilEvt);
       });
