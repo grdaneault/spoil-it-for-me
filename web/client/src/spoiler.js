@@ -15,7 +15,7 @@
     var data = evtData.detail;
     lastData = data.spoiler;
 
-    fetch(`http://spoilitfor.me:5000/media/${data.spoiler.id}/spoiler`)
+    fetch(`/api/media/${data.spoiler.id}/spoiler`)
       .then(function(res){
         return res.json();
       })

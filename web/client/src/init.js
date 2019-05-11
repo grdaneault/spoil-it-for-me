@@ -14,7 +14,7 @@
   // mock out networking...
   // setTimeout(load, 250);
 
-  fetch('http://spoilitfor.me:5000/media')
+  fetch('/api/media')
     .then(function(res){
       return res.json();
     })

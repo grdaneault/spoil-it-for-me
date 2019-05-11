@@ -1,32 +1,32 @@
 from app.model import Media, Spoiler
 import random
+from jinja2 import Template
+
 
 class SpoilerTemplate:
-    TAG_PERSON = "%PERSON%"
-    TAG_PLACE = "%PLACE%"
-
     def __init__(self, template: str):
-        self.template = template
+        self.template = Template(template)
 
     def apply(self, context):
-        msg = self.template.replace(SpoilerTemplate.TAG_PERSON, context.get_person())
-        return Spoiler(media=context.media, message=msg, background_image="https://cnet2.cbsistatic.com/img/x7wuV8zJXZqcLlS69HizMkSYYv0=/940x0/2019/04/02/0f0b1a02-e399-4c62-b409-c92a2b1904d2/reald3d.jpg")
+        msg = self.template.render(ctx=context)
+        return Spoiler(media=context.media, message=msg, background_image="https://timedotcom.files.wordpress.com/2019/05/game-of-thrones-season-8-episode-5-davos-jon-snow.jpg")
+
 
 class SpoilerContext:
     def __init__(self, media: Media):
         self.media = media
 
-    def get_person(self):
-        return "A character"
-
-
+    @property
+    def character(self):
+        return random.choice(self.media.characters).name
 
 class SpoilerGenerator:
     TEMPLATES = [
-        SpoilerTemplate("{character} dies in the end."),
+        SpoilerTemplate("{{ctx.character}} dies in the end."),
         SpoilerTemplate("{setting} is in an alternate dimension."),
-        SpoilerTemplate("{character} was dead the whole time."),
-        SpoilerTemplate("{character} was actually {character}")
+        SpoilerTemplate("{{ctx.character}} was dead the whole time."),
+        SpoilerTemplate("{{ctx.character}} was actually {{ctx.character}} in disguise."),
+        SpoilerTemplate("<strong>{{ctx.character}}</strong> makes it out alive.")
     ]
 
     def generate(self, media: Media):

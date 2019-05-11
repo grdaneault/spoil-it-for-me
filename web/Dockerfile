@@ -1,4 +1,10 @@
-FROM node:10-alpine
+FROM node:current-alpine
 
-RUN npm install -g gulp
-RUN gulp build
+RUN mkdir /code
+WORKDIR /code
+
+COPY gulpfile.js package.json package-lock.json ./
+RUN npm install -g gulp && \
+    npm install
+
+COPY client client
