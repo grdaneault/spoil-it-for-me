@@ -1,0 +1,50 @@
+@import 'test';
+
+#spoiled {
+  position: absolute;
+  transform: translate(100vw, 0);
+  transition: all 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+
+  background-color:lightcyan;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  &.show {
+    transform: translate(0, 0);
+  }
+
+  #spoiler {
+    transform: translate(100vw, 0);
+    transition: all .7s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+
+    &.show {
+      transform: translate(0, 0);    
+    }
+  }
+
+
+  #buttons {
+    position: absolute;
+    bottom: 0;
+    height: 60px;
+
+    btn {
+      border: solid 1px black;
+      padding: 12px 24px;
+      border-radius: 24px;
+      margin-left: 24px;
+      margin-right: 12px;
+      text-transform: uppercase;
+      background-color: lightgray;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: @hot-shadow;
+      font-family: @kalam-font;
+
+      &:hover {
+        box-shadow: @hot-shadow-up;
+      }
+    }
+  }
+}

@@ -10,13 +10,31 @@
 @kalam-font: 'Kalam', cursive;
 @lucky-font: 'Luckiest Guy', cursive;
 
+// common
+@hot-shadow: -1px 5px 12px -8px black;
+@hot-shadow-up: -1px 5px 12px -2px black;
+
 // colors
 @primary: #eca218;
 @nuetral: #565146;
 
+html,
+body {
+  margin: 0;
+  padding:0;
+
+  overflow: hidden;
+
+}
+
 .main {
   color: red;
   text-align: center;
+  transition: all 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  &.hide {
+    transform: translate(-100vw, 0);
+  }
+
   .top {
     color: @nuetral;
     font-family: @kalam-font;
