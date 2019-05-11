@@ -6,3 +6,10 @@ class Spoiler:
         self.media = media
         self.message = message
         self.background_image = background_image
+
+    def to_json(self):
+        return {
+            "media": self.media.to_json(),
+            "message": self.message,
+            "background_image": self.background_image
+        }

@@ -1,0 +1,1 @@
+from app.service.spoiler_generator import SpoilerGenerator
