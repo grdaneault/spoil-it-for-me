@@ -1,0 +1,31 @@
+
+.font-lucky {
+  font-family: 'Luckiest Guy', cursive;
+}
+.font-kalam {
+  font-family: 'Kalam', cursive;
+}
+
+// fonts
+@kalam-font: 'Kalam', cursive;
+@lucky-font: 'Luckiest Guy', cursive;
+
+// colors
+@primary: #eca218;
+@nuetral: #565146;
+
+.main {
+  color: red;
+  text-align: center;
+  .top {
+    color: @nuetral;
+    font-family: @kalam-font;
+  }
+  .low {
+    font-family: @lucky-font;
+    color: @primary;
+    font-size: 76px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+}

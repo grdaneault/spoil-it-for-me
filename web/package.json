@@ -4,5 +4,11 @@
   "description": "real spoilers",
   "main": "index.js",
   "author": "Chris & Greg",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-csso": "^3.0.1",
+    "gulp-less": "^4.0.1"
+  }
 }
