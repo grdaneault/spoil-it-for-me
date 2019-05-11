@@ -3,11 +3,14 @@ from typing import List
 
 
 class Media:
-    def __init__(self, media_id: int, title: str, media_type: str, characters: List[Character]):
+    def __init__(self, media_id: int, title: str, media_type: str, characters: List[Character], settings: List[str], custom_spoilers: List[str], images: List[str]):
         self.id = media_id
         self.title = title
         self.type = media_type
         self.characters = characters
+        self.settings = settings
+        self.custom_spoilers = custom_spoilers
+        self.images = images
 
     def to_json(self, include_characters=False) -> dict:
         ret = {

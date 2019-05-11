@@ -9,7 +9,10 @@ class SpoilerTemplate:
 
     def apply(self, context):
         msg = self.template.render(ctx=context)
-        return Spoiler(media=context.media, message=msg, background_image="https://timedotcom.files.wordpress.com/2019/05/game-of-thrones-season-8-episode-5-davos-jon-snow.jpg")
+        return Spoiler(
+            media=context.media,
+            message=msg,
+            background_image=random.choice(context.media.images))
 
 
 class SpoilerContext:
@@ -20,15 +23,20 @@ class SpoilerContext:
     def character(self):
         return random.choice(self.media.characters).name
 
+    @property
+    def setting(self):
+        return random.choice(self.media.settings)
+
 class SpoilerGenerator:
     TEMPLATES = [
-        SpoilerTemplate("{{ctx.character}} dies in the end."),
-        SpoilerTemplate("{setting} is in an alternate dimension."),
-        SpoilerTemplate("{{ctx.character}} was dead the whole time."),
-        SpoilerTemplate("{{ctx.character}} was actually {{ctx.character}} in disguise."),
-        SpoilerTemplate("<strong>{{ctx.character}}</strong> makes it out alive.")
+        "{{ctx.character}} dies in the end.",
+        "{{ctx.setting}} is in an alternate dimension.",
+        "{{ctx.character}} was dead the whole time.",
+        "{{ctx.character}} was actually {{ctx.character}} in disguise.",
+        "{{ctx.character}} makes it out alive."
     ]
 
     def generate(self, media: Media):
         context = SpoilerContext(media=media)
-        return random.choice(SpoilerGenerator.TEMPLATES).apply(context)
+        template = random.choice(SpoilerGenerator.TEMPLATES + media.custom_spoilers)
+        return SpoilerTemplate(template).apply(context)
