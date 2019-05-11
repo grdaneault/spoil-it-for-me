@@ -1,0 +1,8 @@
+{
+  "name": "spoilitforme",
+  "version": "1.0.0",
+  "description": "real spoilers",
+  "main": "index.js",
+  "author": "Chris & Greg",
+  "license": "MIT"
+}
