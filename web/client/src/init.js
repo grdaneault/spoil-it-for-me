@@ -8,28 +8,41 @@
   document.addEventListener('spoil:back', function(){
     main.classList.remove('hide');
   })
-
-
+///media/id/spoiler
+//http://spoilitfor.me:5000/media
+//[{"id":1,"title":"Avengers: Endgame","type":"movie"},{"id":2,"title":"Game of Thrones","type":"tv"}]
   // mock out networking...
-  setTimeout(load, 250);
+  // setTimeout(load, 250);
 
-  function load(){
-    var spoilers = [
-      'Game of Thrones',
-      'Harry Potter',
-      'Avengers',
-      'Mr. Robot'
-    ]
+  fetch('http://spoilitfor.me:5000/media')
+    .then(function(res){
+      return res.json();
+    })
+    .then(function(data){
+      console.log('data', data);
+      load(data);
+    });
+
+  function load(data){
+    // var spoilers = [
+    //   'Game of Thrones',
+    //   'Harry Potter',
+    //   'Avengers',
+    //   'Mr. Robot'
+    // ]
+    var spoilers = data.map(function(spoiler){
+      return spoiler.title
+    });
     root.innerHTML = '';
-    spoilers.forEach(function(spoiler){
+    data.forEach(function(spoiler){
 
       var node = document.createElement('div');
       node.classList.add('spoil-option')
-      node.innerHTML = spoiler;
+      node.innerHTML = spoiler.title;
       node.addEventListener('click', function(evt){
         console.log('clicky', spoiler);
         var spoilEvt = new CustomEvent('spoil:it', {
-          show: spoiler
+          spoiler: spoiler
         });
         document.dispatchEvent(spoilEvt);
       });

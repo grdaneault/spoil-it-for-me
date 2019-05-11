@@ -3,9 +3,9 @@
 #spoiled {
   position: absolute;
   transform: translate(100vw, 0);
-  transition: all 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: transform .3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
-  background-color:lightcyan;
+  background-color:black;
   top: 0;
   left: 0;
   right: 0;
@@ -16,7 +16,25 @@
 
   #spoiler {
     transform: translate(100vw, 0);
-    transition: all .7s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    transition: transform .23s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+
+    background-image: url(https://imgflip.com/s/meme/This-Is-Where-Id-Put-My-Trophy-If-I-Had-One.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+
+    #text {
+      font-family: @lucky-font;
+      color: white;
+      text-align: left;
+      padding-top: 100px;
+      font-size: 60px;
+      max-width: 80%;
+      margin: auto;
+      text-shadow: 0px 0px 7px black, 0px 0px 3px black;
+    }
 
     &.show {
       transform: translate(0, 0);    
