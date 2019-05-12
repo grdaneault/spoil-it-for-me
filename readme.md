@@ -1,4 +1,4 @@
-[spoilitfor.me](spoilitfor.me)
+[spoilitfor.me](https://spoilitfor.me)
 =============
 
 A semi-curated spoiler generator. Prepopulated with a [list of key characters and places](api/app/media) and formats, it can generate spoilers that are relevant to the target universe.
