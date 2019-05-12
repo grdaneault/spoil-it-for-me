@@ -36,7 +36,7 @@
   backBtn.addEventListener('click', function(){
     var backEvt = new CustomEvent('spoil:back');
     document.dispatchEvent(backEvt);
-  })
+  });
 
   againBtn.addEventListener('click', function(){
     spoiler.classList.remove('show');

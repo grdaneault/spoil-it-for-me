@@ -12,20 +12,26 @@ class SpoilerTemplate:
         return Spoiler(
             media=context.media,
             message=msg,
-            background_image=random.choice(context.media.images))
+            background_image=random.choice(context.potential_images))
 
 
 class SpoilerContext:
     def __init__(self, media: Media):
         self.media = media
+        self.potential_images = []
 
     @property
     def character(self):
-        return random.choice(self.media.characters).name
+        character = random.choice(self.media.characters)
+        self.potential_images.append(character.image)
+        return character.name
 
     @property
     def setting(self):
-        return random.choice(self.media.settings)
+        setting = random.choice(self.media.settings)
+        self.potential_images.append(setting.image)
+        return setting.name
+
 
 class SpoilerGenerator:
     TEMPLATES = [
@@ -33,7 +39,10 @@ class SpoilerGenerator:
         "{{ctx.setting}} is in an alternate dimension.",
         "{{ctx.character}} was dead the whole time.",
         "{{ctx.character}} was actually {{ctx.character}} in disguise.",
-        "{{ctx.character}} makes it out alive."
+        "{{ctx.character}} makes it out alive.",
+        "{{ctx.character}} is betrayed by {{ctx.character}}",
+        "{{ctx.setting}} burns to the ground",
+        "{{ctx.setting}} is returned to glory"
     ]
 
     def generate(self, media: Media):
